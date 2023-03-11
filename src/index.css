@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+.text {
+  /* background-color: antiquewhite; */
+  background: center no-repeat url('https://hiteshlala.com/backgrounds-1/images/fractal101-11Nov2021.png');
+  background-clip: text;
+  color: transparent;
+}
+
+.circle {
+  background: center no-repeat url('https://hiteshlala.com/backgrounds-1/images/fractal101-11Nov2021.png');
+  clip-path: circle(50px);
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+}
