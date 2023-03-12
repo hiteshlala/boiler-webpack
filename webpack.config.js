@@ -7,7 +7,7 @@ module.exports = {
   mode: 'production', // or 'development'
   entry: {
     index: './src/index.ts',
-    page2: './src/page2.ts'
+    page2: './src/page2.tsx'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
