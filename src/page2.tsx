@@ -1,9 +1,9 @@
 import React, { useState, Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import { MantineProvider, Button } from '@mantine/core';
 
 import './index.css';
 import Loading from './Loading';
-
 
 const basename = process.env.NODE_ENV === 'development' ? '' : 'fractals';
 
@@ -14,7 +14,7 @@ function App() {
       <div>This is React component</div>
       <div>counter: <span>{count}</span></div>
       <button onClick={() => setCount(count+1)}>Increment</button>
-      <button onClick={() => setCount(count-1)}>Deccrement</button>
+      <Button onClick={() => setCount(count-1)}>Decrement</Button>
     </Suspense>
   );
 }
@@ -26,7 +26,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
       <App />
+    </MantineProvider>
   </React.StrictMode>
 );
 
