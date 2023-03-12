@@ -8,8 +8,12 @@ const outputFolderName = path.resolve(__dirname, 'dist');
 module.exports = {
   mode: 'production', // or 'development'
   entry: {
-    index: './src/index.js'
+    index: './src/index.ts'
   },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  devtool: 'inline-source-map',
   output: {
     filename: '[name].js',
     path: outputFolderName,
@@ -44,7 +48,12 @@ module.exports = {
             },
           }
         ],
-      }
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ]
   },
   optimization: {
