@@ -1,14 +1,13 @@
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const outputFolderName = path.resolve(__dirname, 'dist');
 
 module.exports = {
   mode: 'production', // or 'development'
   entry: {
-    index: './src/index.ts'
+    index: './src/index.ts',
+    page2: './src/page2.ts'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -20,10 +19,6 @@ module.exports = {
     clean: true
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[name].css',
-    }),
     new CopyPlugin({
       patterns: [
         { from: 'src/*.html', to: '[name].html' },
@@ -33,9 +28,14 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+      {
         test: /\.css$/i,
         use: [
-          MiniCssExtractPlugin.loader, 
+          'style-loader', 
           'css-loader',
           {
             loader: "postcss-loader",
@@ -49,18 +49,7 @@ module.exports = {
           }
         ],
       },
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
-      },
     ]
-  },
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new CssMinimizerPlugin(),
-    ],
   },
 };
 

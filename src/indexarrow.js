@@ -5,7 +5,6 @@ const anotherElement = () => {
   element.innerHTML = `
     <p> Arrow Function File</p>
   `;
-  console.log('Arrow function got called');
   return element;
 }
 
